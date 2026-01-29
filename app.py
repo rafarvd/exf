@@ -54,13 +54,13 @@ async def main():
             cr: CaptchaResponse = agent.cr_list[-1]
             print(json.dumps(cr.model_dump(by_alias=True),
                   indent=2, ensure_ascii=False))
-
+        
+        await page.screenshot(path="screen.png", full_page=True)
         await page.wait_for_timeout(2000)
         await page.wait_for_selector('input#login')
         await page.click('input#login')
-        await page.screenshot(path="ExFaucetSolved.png")
+        await page.screenshot(path="screen.png", full_page=True)
         await page.wait_for_timeout(2000)
 
 if __name__ == "__main__":
     asyncio.run(main())
-
