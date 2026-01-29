@@ -45,3 +45,10 @@ jobs:
           USER_AGENT: ${{ secrets.USER_AGENT }}
         timeout-minutes: 10
         run: python app.py
+
+      - name: Upload da captura
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: screenshot
+          path: screen.png
