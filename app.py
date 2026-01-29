@@ -40,7 +40,7 @@ async def main():
         await page.wait_for_timeout(2000)
         await page.wait_for_selector("#address")
         if not await page.input_value("#address"):
-            await page.type("#address", "rafaro128@gmail.com", delay=50)
+            await page.type("#address", "rafarovd@gmail.com", delay=50)
         await page.wait_for_timeout(2000)
         await page.wait_for_selector('button:has-text("Start Claim")')
         await page.click('button:has-text("Start Claim")')
@@ -64,3 +64,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
