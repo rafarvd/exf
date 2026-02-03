@@ -40,7 +40,7 @@ jobs:
           LOGIN: ${{ secrets.LOGIN }}
           REF: ${{ secrets.REF }}
           USER_AGENT: ${{ secrets.USER_AGENT }}
-        timeout-minutes: 10
+        timeout-minutes: 15
         continue-on-error: true
         run: python app.py
 
