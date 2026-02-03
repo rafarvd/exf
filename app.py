@@ -34,8 +34,8 @@ async def challenge(page: Page) -> AgentV:
 
 async def main():
     async with AsyncCamoufox(
-        headless=True,
-        # headless="virtual",
+        #headless=True,
+        headless="virtual",
         persistent_context=True,
         user_data_dir="tmp/.cache/camoufox",
         screen=Screen(max_width=1366, max_height=768),
@@ -46,6 +46,7 @@ async def main():
 
         for i in range(1, 16):
             try:
+                await page.wait_for_timeout(5000)
                 URL = random.choice(URLS)
                 msg = f"[{i}/15] Accessing..."
                 print(f"╔{'═' * (len(msg) + 4)}╗")
@@ -89,5 +90,6 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
 
