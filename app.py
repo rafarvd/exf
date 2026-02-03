@@ -46,7 +46,7 @@ async def main():
 
         for i in range(1, 16):
             try:
-                await page.wait_for_timeout(5000)
+                # await page.wait_for_timeout(5000)
                 URL = random.choice(URLS)
                 msg = f"[{i}/15] Accessing..."
                 print(f"╔{'═' * (len(msg) + 4)}╗")
@@ -90,6 +90,7 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
 
 
