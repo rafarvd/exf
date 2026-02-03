@@ -10,10 +10,10 @@ from playwright.async_api import Page
 from hcaptcha_challenger import AgentV, AgentConfig, CaptchaResponse
 from hcaptcha_challenger.utils import SiteKey
 
-URLS = os.getenv("URLS").split(",")
+URLS = os.getenv("URLS").split("\n")
 LOGIN = os.getenv("LOGIN")
 REF = os.getenv("REF")
-API_KEY = os.getenv("GEMINI_API_KEY").split(",")
+API_KEY = os.getenv("GEMINI_API_KEY").split("\n")
 
 async def challenge(page: Page) -> AgentV:
     """Automates the process of solving an hCaptcha challenge."""
@@ -89,3 +89,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
