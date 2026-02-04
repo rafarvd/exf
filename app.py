@@ -44,7 +44,7 @@ async def main():
     ) as browser:
         page = browser.pages[-1] if browser.pages else await browser.new_page()
 
-        for i in range(1, 21):
+        for i in range(1, 11):
             try:
                 # await page.wait_for_timeout(5000)
                 URL = random.choice(URLS)
@@ -90,6 +90,7 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
 
 
