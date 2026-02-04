@@ -11,7 +11,7 @@ from hcaptcha_challenger import AgentV, AgentConfig, CaptchaResponse
 from hcaptcha_challenger.utils import SiteKey
 
 URLS = os.getenv("URLS").split("\n")
-LOGIN = os.getenv("LOGIN")
+LOGIN = os.getenv("LOGIN").split("\n")
 REF = os.getenv("REF")
 API_KEY = os.getenv("API_KEY").split("\n")
 
@@ -56,7 +56,7 @@ async def main():
                 await page.wait_for_timeout(2000)
                 await page.wait_for_selector("#address")
                 if not await page.input_value("#address"):
-                    await page.type("#address", LOGIN, delay=50)
+                    await page.type("#address", random.choice(LOGIN), delay=50)
                 await page.wait_for_timeout(2000)
                 await page.wait_for_selector('button:has-text("Start Claim")')
                 await page.click('button:has-text("Start Claim")')
