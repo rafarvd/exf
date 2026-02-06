@@ -10,14 +10,12 @@ from playwright.async_api import Page
 from hcaptcha_challenger import AgentV, AgentConfig, CaptchaResponse
 from hcaptcha_challenger.utils import SiteKey
 
-URLS = os.getenv("URLS").split("\n")
-LOGIN = os.getenv("LOGIN").split("\n")
 REF = os.getenv("REF")
-API_KEY = os.getenv("API_KEY").split("\n")
 
 async def challenge(page: Page) -> AgentV:
     """Automates the process of solving an hCaptcha challenge."""
     # [IMPORTANT] Initialize the Agent before triggering hCaptcha
+    API_KEY = os.getenv("API_KEY").split("\n")
     agent_config = AgentConfig(
         DISABLE_BEZIER_TRAJECTORY=True, GEMINI_API_KEY=random.choice(API_KEY))
     agent = AgentV(page=page, agent_config=agent_config)
@@ -35,7 +33,7 @@ async def challenge(page: Page) -> AgentV:
 async def main():
     async with AsyncCamoufox(
         headless=True,
-        #headless="virtual",
+        # headless="virtual",
         persistent_context=True,
         user_data_dir="tmp/.cache/camoufox",
         screen=Screen(max_width=1366, max_height=768),
@@ -47,8 +45,10 @@ async def main():
         for i in range(1, 11):
             try:
                 # await page.wait_for_timeout(5000)
+                URLS = os.getenv("URLS").split("\n")
+                LOGIN = os.getenv("LOGIN").split("\n")
                 URL = random.choice(URLS)
-                msg = f"[{i}/15] Accessing..."
+                msg = f"[{i}/10] Accessing..."
                 print(f"╔{'═' * (len(msg) + 4)}╗")
                 print(f"║  {msg}  ║")
                 print(f"╚{'═' * (len(msg) + 4)}╝")
@@ -82,7 +82,8 @@ async def main():
                     sucesso = await page.inner_text("div.alert-success")
                     print(f"\n\033[1;32mSUCCESS\033[0m | {sucesso}\n")
                 except Exception as e:
-                    print(f"\n\033[1;31mFAILURE\033[0m | No success message found.\n")
+                    print(
+                        f"\n\033[1;31mFAILURE\033[0m | No success message found.\n")
                     continue
             except Exception as e:
                 print(f"\n\033[1;31mERROR\033[0m | Critical error occurred.\n")
@@ -90,10 +91,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
-
-
-
-
-
-
